@@ -1,0 +1,21 @@
+{% extends 'base/home.html' %}  
+{% block content %}
+
+<div class="card">
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div><input type="text" name="name" id="name" placeholder="product name"></div>
+    <div><input type="file" name="image" id="image"></div>
+    <div><select name="category" id="category">
+        <option value="none">Add Category</option>
+        {% for c in cats %}
+        <option value="{{c.id}}">{{c.name}}</option>
+        {%endfor%}
+    </select></div>
+    <div><input type="text" name="price" id="price" placeholder="add the price"></div>
+    <div><textarea name="desc" id="desc" cols="30" rows="10"></textarea></div>
+    <button class="btn btn-info" type="submit">add</button>
+</form>
+</div>
+  
+{% endblock content %}
