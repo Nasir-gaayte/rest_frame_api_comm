@@ -11,6 +11,8 @@ urlpatterns = [
     path('product/',views.getProducts),
     path('create_category/',views.postCategory),
     path('create_product/',views.postProducts),
+    path('category/<str:pk>/',views.getCategoryById),
+    path('product/<str:pk>/',views.getProductsById),
     path('update_category/<str:pk>/',views.updateCategory),
     path('update_product/<str:pk>/',views.updateProducts),
     path('delete_category/<str:pk>/',views.deleteCategory),

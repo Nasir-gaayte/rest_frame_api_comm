@@ -32,8 +32,26 @@ def dView(request):
         'product':product,
         'cats':cats,
     })
+#----------------------------------------
+
+@api_view(['GET'])
+def getCategoryById(request, pk):
+    data = CategoryModel.objects.get(id=pk)
+    serializer= CategorySerializer(data, many=False)
+    return Response(serializer.data)
 
 
+@api_view(['GET'])
+def getProductsById(request, pk):
+    data = ProductsModel.objects.get(id=pk)
+    serializer= ProductSerializer(data, many=False)
+    return Response(serializer.data)
+
+
+
+
+
+#---------------------------------------
 
 @api_view(['GET'])
 def getCategory(request):
