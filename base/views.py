@@ -45,6 +45,7 @@ def getCategoryById(request, pk):
 def getProductsById(request, pk):
     data = ProductsModel.objects.get(id=pk)
     serializer= ProductSerializer(data, many=False)
+    print(serializer)
     return Response(serializer.data)
 
 
@@ -63,6 +64,7 @@ def getCategory(request):
 @api_view(['GET'])
 def getProducts(request):
     data = ProductsModel.objects.all()
+    
     serializer= ProductSerializer(data, many=True)
     return Response(serializer.data)
 
@@ -107,7 +109,9 @@ def updateCategory(request,pk):
 def updateProducts(request, pk):
     data = request.data
     post = ProductsModel.objects.get(id=pk)
+    print(post)
     serializer= ProductSerializer(post, data=request.data,partial=True)
+    print(serializer)    
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
