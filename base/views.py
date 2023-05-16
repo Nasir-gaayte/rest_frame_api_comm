@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from .models import CategoryModel, ProductsModel
 
 from .serializer import CategorySerializer, ProductSerializer
@@ -117,18 +118,20 @@ def updateProducts(request, pk):
     return Response(serializer.data)
 
 
-@api_view(['DELETE'])
-def deleteCategory(request,pk):
-    data = CategoryModel.objects.get(id=pk)
-    data.delete()
-    return Response('Its Deleted !')
+
+class DeleteCategory(APIView):
+    def deleteCategory(self,request,pk):
+        data = CategoryModel.objects.get(id=pk)
+        data.delete()
+        return Response('Its Deleted !')
 
 
-@api_view(['DELETE'])
-def deleteProducts(request, pk):
-    data = ProductsModel.objects.get(id=pk)
-    data.delete()
-    return Response('Its Deleted !')
+class DeleteProduct(APIView):
+    
+    def deleteProducts(self,request, pk):
+        data = ProductsModel.objects.get(id=pk)
+        data.delete()
+        return Response('Its Deleted !')
 
 
 

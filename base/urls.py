@@ -15,6 +15,6 @@ urlpatterns = [
     path('product/<str:pk>/',views.getProductsById),
     path('update_category/<str:pk>/',views.updateCategory),
     path('update_product/<str:pk>/',views.updateProducts),
-    path('delete_category/<str:pk>/',views.deleteCategory),
-    path('delete_product/<str:pk>/',views.deleteProducts),
+    path('delete_category/<str:pk>/',views.DeleteCategory.as_view()),
+    path('delete_product/<str:pk>/',views.DeleteProduct.as_view()),
 ]
